@@ -1,0 +1,58 @@
+<html>
+<head>
+    <title>Bai2</title>
+</head>
+<body>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular.min.js"></script>
+    <script type="text/javascript">
+        var app = angular.module('MyApp', [])
+        app.controller('MyController', function ($scope, $window) {
+            $scope.Customers = [
+                {
+                    id:1,
+                    name: "Item 1",
+                    price: 125.99,
+                    desc: "Nội dung nè",
+                    img: "",
+                    status: true
+                },
+                {
+                    id:2,
+                    name: "Item 2",
+                    price: 125.99,
+                    desc: "Nội dung nè",
+                    img: "",
+                    status: true
+                }
+                ];
+            $scope.Delete = function (index) {
+                //Tìm index trong array
+                var id = $scope.Customers[index].id;
+                $scope.Customers.splice(index, 1);
+            }
+        });
+    </script>
+    <div ng-app="MyApp" ng-controller="MyController">
+        <table border="1">
+            <thead>
+            <tr>
+                <th>ID sản phẩm</th>
+                <th>Tên sản phẩm</th>
+                <th>Giá</th>
+                <th>Mô tả</th>
+                <th>Chức năng</th>
+            </tr>
+            </thead>
+            <tbody ng-repeat="c in Customers">
+                <tr>
+                    <td>{{c.id}}</td>
+                    <td>{{c.name}}</td>
+                    <td>${{c.price}}</td>
+                    <th>{{c.desc}}</th>
+                    <td><input type="button" ng-click="Delete($index)" value="Delete" /></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
